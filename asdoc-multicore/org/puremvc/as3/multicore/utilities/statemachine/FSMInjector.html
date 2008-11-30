@@ -183,19 +183,6 @@ showHideInherited();
 <div class="detailBody">
 <code>public function FSMInjector(fsm:XML)</code><p>
    Constructor.
-   
-   <P>
-   Accepts a simple FSM definition like the following for an automatic door:
-   <!--
-   <fsm initial="Door.CLOSED">
-      <state name="Door.OPENED" enter="ClosedEnterCmd" exit="ClosedEnterCmd">
-        <transition action="Door.CLOSE" target="Door.CLOSED"/>
-       </state>
-      <state name="Door.CLOSED" enter="OpenEnterCmd" exit="OpenEnterCmd">
-        <transition action="Door.CLOSED" target="Door.OPENED"/>
-       </state>
-    </fsm>
-    -->
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -214,15 +201,6 @@ showHideInherited();
 <div class="detailBody">
 <code>protected function createState(stateDef:XML):<a href="../statemachine/State.html">State</a></code><p>
    Creates a <code>State</code> instance from its XML definition.
-   <P>
-   A State's XML definition should look like:<PRE>
-   <PRE>
-      <state name="Door.CLOSED" enter="OpenEnterCmd" exit="OpenExitCmd">
-        <transition action="Door.CLOSED" target="Door.OPENED"/>
-       </state>
-    </PRE>
-    There may be any number of other transactions.
-    </P>
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

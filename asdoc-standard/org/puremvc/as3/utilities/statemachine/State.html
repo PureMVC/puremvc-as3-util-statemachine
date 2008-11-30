@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
-<meta content="State,org.puremvc.as3.utilities.statemachine.State,enter,exit,name,transitions,defineTrans,getTarget,removeTrans" name="keywords">
+<meta content="State,org.puremvc.as3.utilities.statemachine.State,entering,exiting,name,transitions,defineTrans,getTarget,removeTrans" name="keywords">
 <title>org.puremvc.as3.utilities.statemachine.State</title>
 </head>
 <body>
@@ -52,11 +52,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#enter">enter</a> : String<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#entering">entering</a> : String<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#exit">exit</a> : String<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#exiting">exiting</a> : String<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 <tr class="">
@@ -90,7 +90,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#State()">State</a>(name:String, enter:String = null, exit:String = null)</div>
+<a class="signatureLink" href="#State()">State</a>(name:String, entering:String = null, exiting:String = null)</div>
 <div class="summaryTableDescription">
    Constructor.</div>
 </td><td class="summaryTableOwnerCol">State</td>
@@ -100,7 +100,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#defineTrans()">defineTrans</a>(action:String, target:String):void</div>
 <div class="summaryTableDescription"> 
-   Define a State Transition.</div>
+   Define a transition.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 <tr class="">
@@ -108,7 +108,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getTarget()">getTarget</a>(action:String):String</div>
 <div class="summaryTableDescription">
-   Get the target State name for a given StateMachine.ACTION Notification type.</div>
+   Get the target state name for a given action.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 <tr class="">
@@ -116,7 +116,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#removeTrans()">removeTrans</a>(action:String):void</div>
 <div class="summaryTableDescription"> 
-   Remove a previously defined State Transition.</div>
+   Remove a previously defined transition.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 </table>
@@ -128,23 +128,23 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="enter"></a>
+<a name="entering"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">enter</td><td class="detailHeaderType">property</td>
+<td class="detailHeaderName">entering</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public var enter:String</code>
+<code>public var entering:String</code>
 </div>
-<a name="exit"></a>
+<a name="exiting"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">exit</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">exiting</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public var exit:String</code>
+<code>public var exiting:String</code>
 </div>
 <a name="name"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -174,7 +174,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function State(name:String, enter:String = null, exit:String = null)</code><p>
+<code>public function State(name:String, entering:String = null, exiting:String = null)</code><p>
    Constructor.
    
    </p><span class="label">Parameters</span>
@@ -187,14 +187,15 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">enter</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the list of the valid next state targets and their triggering events
+<td width="20px"></td><td><code><span class="label">entering</span>:String</code> (default = <code>null</code>)<code></code> &mdash; an optional notification name to be sent when entering this state
    </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">exit</span>:String</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">exiting</span>:String</code> (default = <code>null</code>)<code></code> &mdash; an optional notification name to be sent when exiting this state
+   </td>
 </tr>
 </table>
 </div>
@@ -208,7 +209,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function defineTrans(action:String, target:String):void</code><p> 
-   Define a State Transition. 
+   Define a transition. 
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -233,7 +234,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getTarget(action:String):String</code><p>
-   Get the target State name for a given StateMachine.ACTION Notification type.
+   Get the target state name for a given action.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -256,7 +257,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function removeTrans(action:String):void</code><p> 
-   Remove a previously defined State Transition.
+   Remove a previously defined transition.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

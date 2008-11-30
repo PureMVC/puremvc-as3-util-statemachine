@@ -78,10 +78,15 @@ package org.puremvc.as3.utilities.statemachine
 		/**
 		 * Transitions to the given state from the current state.
 		 * <P>
-		 * Sends the exit notification for the current state 
-		 * and the enter notification for the new state.</P>
+		 * Sends the exiting notification for the current state 
+		 * and the entering notification for the new state.</P>
+		 * <P>
+		 * Both the exiting notification for the current state
+		 * and the entering notification for the next state
+		 * will have a reference to the next state in the note
+		 * body.</P>
 		 * 
-		 * @param state the state to transition to.
+		 * @param nextState the next State to transition to.
 		 */
 		protected function transitionTo( nextState:State ):void
 		{
