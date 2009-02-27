@@ -148,7 +148,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#transitionTo()">transitionTo</a>(nextState:<a href="State.html">State</a>):void</div>
+<a class="signatureLink" href="#transitionTo()">transitionTo</a>(nextState:<a href="State.html">State</a>, data:Object = null):void</div>
 <div class="summaryTableDescription">
    Transitions to the given state from the current state.</div>
 </td><td class="summaryTableOwnerCol">StateMachine</td>
@@ -350,17 +350,33 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>protected function transitionTo(nextState:<a href="State.html">State</a>):void</code><p>
+<code>protected function transitionTo(nextState:<a href="State.html">State</a>, data:Object = null):void</code><p>
    Transitions to the given state from the current state.
    <P>
-   Sends the exit notification for the current state 
-   and the enter notification for the new state.</P>
+   Sends the <code>exiting</code> notification for the current state 
+   followed by the </code>entering</code> notification for the new state.
+   Once finally transitioned to the new state, the </code>changed</code> 
+   notification for the new state is sent.</P>
+   <P>
+   If a data parameter is provided, it is included as the body of all
+   three state-specific transition notes.</P>
+   <P>
+   Finally, when all the state-specific transition notes have been
+   sent, a <code>StateMachine.CHANGED</code> note is sent, with the
+   new <code>State</code> object as the <code>body</code> and the name of the 
+   new state in the <code>type</code>/
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">nextState</span>:<a href="State.html">State</a></code> &mdash; the state to transition to.
+<td width="20px"></td><td><code><span class="label">nextState</span>:<a href="State.html">State</a></code> &mdash; the next State to transition to.
    </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">data</span>:Object</code> (default = <code>null</code>)<code></code></td>
 </tr>
 </table>
 </div>

@@ -80,7 +80,7 @@ package org.puremvc.as3.utilities.statemachine
 		 * <P>
 		 * Sends the <code>exiting</code> notification for the current state 
 		 * followed by the </code>entering</code> notification for the new state.
-		 * Once finally transitioned to the new state, the </code>entering</code> 
+		 * Once finally transitioned to the new state, the </code>changed</code> 
 		 * notification for the new state is sent.</P>
 		 * <P>
 		 * If a data parameter is provided, it is included as the body of all
