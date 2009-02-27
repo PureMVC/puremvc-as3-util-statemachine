@@ -44,7 +44,7 @@ package org.puremvc.as3.multicore.utilities.statemachine
 		
 		override public function onRegister():void
 		{
-			if ( initial ) transitionTo( initial );	
+			if ( initial ) transitionTo( initial, null );	
 		}
 		
 		/**
@@ -78,17 +78,22 @@ package org.puremvc.as3.multicore.utilities.statemachine
 		/**
 		 * Transitions to the given state from the current state.
 		 * <P>
-		 * Sends the exiting notification for the current state 
-		 * and the entering notification for the new state.</P>
+		 * Sends the <code>exiting</code> notification for the current state 
+		 * followed by the </code>entering</code> notification for the new state.
+		 * Once finally transitioned to the new state, the </code>entering</code> 
+		 * notification for the new state is sent.</P>
 		 * <P>
-		 * Both the exiting notification for the current state
-		 * and the entering notification for the next state
-		 * will have a reference to the next state in the note
-		 * body.</P>
+		 * If a data parameter is provided, it is included as the body of all
+		 * three state-specific transition notes.</P>
+		 * <P>
+		 * Finally, when all the state-specific transition notes have been
+		 * sent, a <code>StateMachine.CHANGED</code> note is sent, with the
+		 * new <code>State</code> object as the <code>body</code> and the name of the 
+		 * new state in the <code>type</code>/
 		 * 
 		 * @param nextState the next State to transition to.
 		 */
-		protected function transitionTo( nextState:State ):void
+		protected function transitionTo( nextState:State, data:Object=null ):void
 		{
 			// Going nowhere?
 			if ( nextState == null ) return;
@@ -96,11 +101,8 @@ package org.puremvc.as3.multicore.utilities.statemachine
 			// Clear the cancel flag
 			canceled = false;
 				
-			// Exit the current State (if set)
-			if( currentState ) {
-				if ( nextState.name == currentState.name ) return;
-				if ( currentState.exiting ) sendNotification( currentState.exiting, nextState );
-			}
+			// Exit the current State 
+			if ( currentState && currentState.exiting ) sendNotification( currentState.exiting, data, nextState.name );
 			
 			// Check to see whether the transition has been canceled
 			if ( canceled ) {
@@ -109,11 +111,15 @@ package org.puremvc.as3.multicore.utilities.statemachine
 			}
 			
 			// Enter the next State 
-			if ( nextState.entering ) sendNotification( nextState.entering, nextState );
+			if ( nextState.entering ) sendNotification( nextState.entering, data );
 			currentState = nextState;
 			
-			// Notify the app that the state changed and what the new state is 
-			sendNotification( CHANGED, currentState );
+			// Send the notification configured to be sent when this specific state becomes current 
+			if ( nextState.changed ) sendNotification( currentState.changed, data );
+
+			// Notify the app generally that the state changed and what the new state is 
+			sendNotification( CHANGED, currentState, currentState.name );
+		
 		}
 		
 		/**
@@ -139,7 +145,7 @@ package org.puremvc.as3.multicore.utilities.statemachine
 					var action:String = note.getType();
 					var target:String = currentState.getTarget( action );
 					var newState:State = states[ target ];
-					if ( newState ) transitionTo( newState );  
+					if ( newState ) transitionTo( newState, note.getBody() );  
 					break;
 					
 				case CANCEL:

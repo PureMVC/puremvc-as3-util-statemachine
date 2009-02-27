@@ -19,18 +19,23 @@
 		// The notification to dispatch when exiting the state
 		public var exiting:String;
 
+		// The notification to dispatch when the state has actually changed
+		public var changed:String;
+
 		/**
 		 * Constructor.
 		 * 
 		 * @param id the id of the state
 		 * @param entering an optional notification name to be sent when entering this state
 		 * @param exiting an optional notification name to be sent when exiting this state
+		 * @param changed an optional notification name to be sent when fully transitioned to this state
 		 */
-		public function State( name:String, entering:String=null, exiting:String=null )
+		public function State( name:String, entering:String=null, exiting:String=null, changed:String=null )
 		{
 			this.name = name;
 			if ( entering ) this.entering = entering;
 			if ( exiting ) this.exiting  = exiting;
+			if ( changed ) this.changed = changed;
 		}
 	
 		/** 

@@ -83,7 +83,8 @@
 			var name:String = stateDef.@name.toString();
 			var exiting:String = stateDef.@exiting.toString();
 			var entering:String = stateDef.@entering.toString();
-			var state:State = new State( name, entering, exiting );
+			var changed:String = stateDef.@changed.toString();
+			var state:State = new State( name, entering, exiting, changed );
 			
 			// Create transitions
 			var transitions:XMLList = stateDef..transition as XMLList;
