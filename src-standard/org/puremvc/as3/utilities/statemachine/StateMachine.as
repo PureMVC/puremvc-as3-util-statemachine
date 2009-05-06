@@ -101,11 +101,11 @@ package org.puremvc.as3.utilities.statemachine
 			
 			// Clear the cancel flag
 			canceled = false;
-				
+			
 			// Exit the current State 
 			if ( currentState && currentState.exiting ) sendNotification( currentState.exiting, data, nextState.name );
 			
-			// Check to see whether the transition has been canceled
+			// Check to see whether the exiting guard has been canceled
 			if ( canceled ) {
 				canceled = false;
 				return;
@@ -113,6 +113,15 @@ package org.puremvc.as3.utilities.statemachine
 			
 			// Enter the next State 
 			if ( nextState.entering ) sendNotification( nextState.entering, data );
+			
+			
+			// Check to see whether the entering guard has been canceled
+			if ( canceled ) {
+				canceled = false;
+				return;
+			}
+			//
+			// change the current state only when both guards have been passed
 			currentState = nextState;
 			
 			// Send the notification configured to be sent when this specific state becomes current 
