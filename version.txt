@@ -3,14 +3,16 @@ Copyright (c) 2007-2008, Neil Manuell <neil.manuell@puremvc.org>
 and Cliff Hall <cliff.hall@puremvc.org>
 Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 02/27/09
+Release Date: 6/13/09
     Platform: ActionScript 3 
      Version: 1 
-    Revision: 1
+    Revision: 2
      Authors: Neil Manuell <neil.manuell@puremvc.org>
             : Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+1.2 Added entry-guard cancel checking to StateMachine transition handling. 
+
 1.1 Added reentrant state capability, 'changed' notification for individual
     states, and a data parameter sent in the body of any StateMachine.ACTION
     notification will be passed out as the body of the 'exiting','entering', 
