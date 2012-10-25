@@ -1,7 +1,4 @@
-PureMVC AS3 Utility - State Machine 
-Copyright (c) 2007-2008, Neil Manuell <neil.manuell@puremvc.org>
-and Cliff Hall <cliff.hall@puremvc.org>
-Your reuse is governed by the Creative Commons Attribution 3.0 License
+PureMVC AS3 Utility - State Machine
 --------------------------------------------------------------------------
 Release Date: 6/13/09
     Platform: ActionScript 3 
@@ -9,7 +6,6 @@ Release Date: 6/13/09
     Revision: 2
      Authors: Neil Manuell <neil.manuell@puremvc.org>
             : Cliff Hall <cliff.hall@puremvc.org>
-     License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
 1.2 Added entry-guard cancel checking to StateMachine transition handling. 
 
